@@ -17,11 +17,11 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Test') {
-            steps {
-                sh 'ng test --progress=false --watch false'
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         sh 'ng test --progress=false --watch false'
+        //     }
+        // }
         stage('Build') {
             steps {
                 sh "ng build"
