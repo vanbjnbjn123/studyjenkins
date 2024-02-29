@@ -1,7 +1,10 @@
 pipeline {
     agent any
 
-    tool 'node LTS'
+    tools {
+    // Install the specific version of Node.js
+    nodejs('node LTS')
+    }
 
     environment {
         CHROME_BIN = "/Applications/Google Chrome"
