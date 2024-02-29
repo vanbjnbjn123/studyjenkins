@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        CHROME_BIN = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        CHROME_BIN = "/Applications/Google Chrome"
     }
 
     stages {
