@@ -1,13 +1,9 @@
 pipeline {
     agent any
 
-    tools {
-    // Install the specific version of Node.js
-    nodejs('node LTS')
-    }
-
     environment {
-        CHROME_BIN = "/Applications/Google Chrome"
+        CHROME_BIN = "/Applications/Google Chrome",
+        NODE_JS = tool 'node LTS'
     }
 
     stages {
