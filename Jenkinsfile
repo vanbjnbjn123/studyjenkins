@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        CHROME_BIN = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    }
 
     stages {
         stage('Wellcome') {
