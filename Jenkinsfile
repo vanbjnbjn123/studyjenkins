@@ -33,7 +33,8 @@ pipeline {
         }
         stage('Archive') {
             steps {
-                archiveArtifacts artifacts: '.', fingerprint: true
+                sh "ls"
+                archiveArtifacts artifacts: './', fingerprint: true
             }
         }
         stage('Packaging/Pushing imagae') {
