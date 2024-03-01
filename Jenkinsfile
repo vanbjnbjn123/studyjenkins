@@ -16,21 +16,21 @@ pipeline {
                 echo 'Wellcom to CI'
             }
         }
-        // stage('NPM install') {
-        //     steps {
-        //         sh 'npm install'
-        //     }
-        // }
+        stage('NPM install') {
+            steps {
+                sh 'npm install'
+            }
+        }
         // stage('Test') {
         //     steps {
         //         sh 'ng test --progress=false --watch false'
         //     }
         // }
-        // stage('Build') {
-        //     steps {
-        //         sh "ng build"
-        //     }
-        // }
+        stage('Build') {
+            steps {
+                sh "ng build"
+            }
+        }
         // stage('Archive') {
         //     steps {
         //         sh "ls"
