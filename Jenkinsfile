@@ -1,9 +1,13 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'node'
+    }
+
     environment {
         // CHROME_BIN = "/Applications/Google Chrome",
-        NODE_JS = tool 'node LTS'
+        //NODE_JS = tool 'node LTS'
     }
 
     stages {
