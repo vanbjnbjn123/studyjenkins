@@ -29,12 +29,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh "ng build"
+                sh "cd dist"
                 sh "ls"
-            }
-        }
-        stage('Archive') {
-            steps {
-                archiveArtifacts artifacts: 'dist/**', fingerprint: true
             }
         }
         stage('Packaging/Pushing imagae') {
