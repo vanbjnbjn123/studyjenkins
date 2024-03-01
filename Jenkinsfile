@@ -35,7 +35,7 @@ pipeline {
 
             steps {
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                    sh 'docker build -t trinm09/angular ./dist'
+                    sh 'docker build -t trinm09/angular .'
                     sh 'docker push trinm09/angular'
                 }
             }
