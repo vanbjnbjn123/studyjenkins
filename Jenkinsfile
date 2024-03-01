@@ -34,7 +34,7 @@ pipeline {
         stage('Archive') {
             steps {
                 sh "ls"
-                archiveArtifacts artifacts: './', fingerprint: true
+                archiveArtifacts artifacts: './dist', fingerprint: true
             }
         }
         stage('Packaging/Pushing imagae') {
