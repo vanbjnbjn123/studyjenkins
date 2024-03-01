@@ -55,7 +55,7 @@ pipeline {
                 sh 'docker network create dev || echo "this network exists"'
                 sh 'echo y | docker container prune '
 
-                sh 'docker container run -d --rm --name trinm-angular -p 4200:4200 --network dev trinm09/angular'
+                sh 'docker container run -d --rm --name trinm-angular -p 4200:80 --network dev trinm09/angular'
             }
         }
     }
