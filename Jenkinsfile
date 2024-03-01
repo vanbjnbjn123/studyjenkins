@@ -31,6 +31,11 @@ pipeline {
                 sh "ng build"
             }
         }
+        stage('Archive') {
+            steps {
+                archiveArtifacts artifacts: '.', fingerprint: true
+            }
+        }
         stage('Packaging/Pushing imagae') {
 
             steps {
@@ -48,7 +53,7 @@ pipeline {
                 sh 'docker network create dev || echo "this network exists"'
                 sh 'echo y | docker container prune '
 
-                sh 'docker container run -d --rm --name trinm-angular -p 8081:80 --network dev trinm09/angular'
+                sh 'docker container run -d --rm --name trinm-angular -p 8081:8080 --network dev trinm09/angular'
             }
         }
     }
