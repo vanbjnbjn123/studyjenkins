@@ -29,8 +29,6 @@ pipeline {
         stage('Build') {
             steps {
                 sh "ng build"
-                sh "cd dist"
-                sh "ls"
             }
         }
         stage('Packaging/Pushing imagae') {
