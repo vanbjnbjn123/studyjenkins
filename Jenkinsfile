@@ -31,11 +31,16 @@ pipeline {
                 sh "ng build"
             }
         }
+        stage('Archive') {
+            steps {
+                archiveArtifacts artifacts: 'dist/**', fingerprint: true
+            }
+        }
         stage('Packaging/Pushing imagae') {
 
             steps {
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                    sh 'docker build -t trinm09/angular .'
+                    sh 'docker build -t trinm09/angular ./dist'
                     sh 'docker push trinm09/angular'
                 }
             }
