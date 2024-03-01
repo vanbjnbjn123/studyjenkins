@@ -5,10 +5,10 @@ pipeline {
         nodejs 'node'
     }
 
-    environment {
-        // CHROME_BIN = "/Applications/Google Chrome",
-        //NODE_JS = tool 'node LTS'
-    }
+    // environment {
+    //     // CHROME_BIN = "/Applications/Google Chrome",
+    //     //NODE_JS = tool 'node LTS'
+    // }
 
     stages {
         stage('Wellcome') {
