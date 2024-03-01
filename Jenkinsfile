@@ -29,6 +29,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh "ng build"
+                sh "ls"
             }
         }
         stage('Archive') {
