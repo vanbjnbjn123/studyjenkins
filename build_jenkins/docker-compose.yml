@@ -1,0 +1,54 @@
+version: "3.8"
+
+volumes:
+  jenkins-docker-certs:
+    name: jenkins-docker-certs
+  jenkins-data:
+    name: jenkins-data
+
+services:
+  docker:
+    container_name: jenkins-docker
+    privileged: true
+    networks:
+      jenkins:
+        aliases:
+          - docker
+    environment:
+      - DOCKER_TLS_CERTDIR=/certs
+    volumes:
+      - jenkins-docker-certs:/certs/client
+      - jenkins-data:/var/jenkins_home
+    ports:
+      - 2376:2376
+    image: docker:dind
+  myjenkins-blueocean:
+    build: 
+      dockerfile: ./Dockerfile
+    container_name: jenkins-blueocean
+    restart: on-failure
+    user: root
+    networks:
+      - jenkins
+    environment:
+      - DOCKER_HOST=tcp://docker:2376
+      - DOCKER_CERT_PATH=/certs/client
+      - DOCKER_TLS_VERIFY=1
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - jenkins-docker-certs:/certs/client:ro
+  agent:
+    image: "jenkins/ssh-agent:latest"
+    privileged: TRUE
+    user: root
+    container_name: ssh-agent
+    expose:
+      - 22
+    environment:
+      - SSH_JENKINS_AGENT_SSH_PULIC = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCs3zZPKyvz/NNysudDko5mxm5s1BM9x1Ye4O05AjMhQh2rOySnnaT1APGL+0rL2gGqnOeEgMR0+sp+gV55zC8GVtv3ae0Es7AQfLuiK0pO5TkLCdFZS1g60a4PMSGlMCh/NgX+u/h1Duu2E/gXgsORazwesNVapaVehXmVHVrmIool1nMzmh/kyRxnpPg40k5vxl09wwWd2+7KOsNPC/HAvhF3iwzh8n+I06ADBbLyBwUb6o/2JCq/t9d9JJ903SO13oAZMIMmD88Z0To57md5yolvd9veqCam5YkPcHLHCIil9BPqZKS81WCbZtrl1T52lD53pzpWdPGRRLroUFOz
+networks:
+  jenkins:
+    name: jenkins

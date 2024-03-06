@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label: 'angular_dev_ci_agent'
+    }
 
     tools {
         nodejs 'node'
